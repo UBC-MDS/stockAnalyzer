@@ -11,7 +11,7 @@
 #' library(quantmod)
 #' getSymbols("AAPL")
 #' summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
-#' 
+#'
 summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
   return(NULL)
 }
@@ -30,7 +30,7 @@ summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
 #' @examples
 #' library(quantmod)
 #' getSymbols("AAPL")
-#' moving_avg_AAPL <- movingAverage(AAPL,300,paste("moveAverage", colnames(AAPL), sep="_"))
+#' moving_avg_AAPL <- movingAverage(AAPL,50,paste("movingAverage", colnames(AAPL), sep="_"))
 movingAverage <- function(data, window, newColname) {
 
   x <- matrix(0, nrow(data) , ncol(data))
@@ -55,13 +55,39 @@ exponentialSmoothing <- function() {
 
 }
 
-
+#' Visualizing the trend of the stock by using moving average method
+#'
+#' @param data A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr)
+#' @param window A numeric vector of the size of the window (number of days) used in moving average calculation
+#' @param newColname a character vector of the name of the column to be used in moving average calculation (such as Close, Adj Close)
+#'
+#' @return ggplot line plot of specific stock's historical prices and moving average prices
+#' @export
+#'
+#' @examples
+#' library(quantmod)
+#' getSymbols("AAPL")
+#' visMA_AAPL <- visMovingAverage(AAPL, 50, paste("movingAverage", colnames(AAPL), sep="_"))
 visMovingAverage <- function() {
-
+  return(NULL)
 }
 
 
-visExpSmoothing <- function() {
 
+#' Using the trend of the stock by using exponential smoothing method
+#'
+#' @param data A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr)
+#' @param alpha A numeric vector of the smoothing parameter which defines the weighting. It should be between 0 and 1
+#' @param newColname a character vector of the name of the column to be used in moving average calculation (such as Close, Adj Close)
+#'
+#' @return ggplot line plot of specific stock's historical prices and exponentially smoothed prices
+#' @export
+#'
+#' @examples
+#' library(quantmod)
+#' getSymbols("AAPL")
+#' visES_AAPL <- visExpSmoothing(AAPL, 0.3, paste("exponentialSmoothing", colnames(AAPL), sep="_"))
+visExpSmoothing <- function() {
+  return(NULL)
 }
 
