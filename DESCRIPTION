@@ -1,11 +1,14 @@
 Package: stockAnalyzer
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Provide basic time series modelling functionalities to analyze historical stock prices
 Version: 0.1.0
 Author: Kangyu (Mark) Wang, Sicheng (Marc) Sun, Tingyu Zhang, William Xu
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. 
+Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. 
+Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. 
+The library has five functions, namely `summaryStats`, `movingAverage`, `exponentialSmoothing`, `visMovingAverage`, and `visExpSmoothing`. 
+A convenient use case for this package is to combine it with the `quantmod` library, which can provide well-formated stock price data from Yahoo Finance dataset with customized date range setting.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
