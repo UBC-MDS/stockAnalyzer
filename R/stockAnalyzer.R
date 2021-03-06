@@ -30,7 +30,7 @@ summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
 #' @examples
 #' library(quantmod)
 #' getSymbols("AAPL")
-#' moving_avg_AAPL <- movingAverage(AAPL,50,paste("movingAverage", colnames(AAPL), sep="_"))
+#' moving_avg_AAPL <- movingAverage(AAPL,300,paste("movingAverage", colnames(AAPL), sep="_"))
 movingAverage <- function(data, window, newColname) {
 
   x <- matrix(0, nrow(data) , ncol(data))
