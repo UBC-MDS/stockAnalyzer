@@ -1,7 +1,15 @@
 
 
-summaryStats <- function() {
-
+#' Generate summary statistics for profile stock data
+#'
+#' @param data A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr).
+#' @param measurements character
+#' @return tibble
+#' @export
+#'
+#' @examples
+summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
+  return(NULL)
 }
 
 
