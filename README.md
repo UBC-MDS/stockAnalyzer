@@ -16,8 +16,9 @@ statistics, applies moving average and exponential smoothing models to
 the data, and visualizes in-sample moving average as well as exponential
 smoothing fits. A convenient use case for this package is to combine it
 with the `quantmod` library, which can provide well-formated stock price
-data from Yahoo Finance dataset with customized date range setting. \#\#
-Installation
+data from Yahoo Finance dataset with customized date range setting. 
+
+## Installation
 
 You can install the released version of stockAnalyzer from
 [CRAN](https://CRAN.R-project.org) with:
