@@ -20,11 +20,11 @@ summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
 
 #' Using moving average method to profile stock data
 #'
-#' @param data xts
+#' @param data xts a time series object
 #' @param window numeric
 #' @param newColname character
 #'
-#' @return xts
+#' @return xts a time series object
 #' @export
 #'
 #' @examples
@@ -33,20 +33,7 @@ summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
 #' moving_avg_AAPL <- movingAverage(AAPL,300,paste("movingAverage", colnames(AAPL), sep="_"))
 movingAverage <- function(data, window, newColname) {
 
-  x <- matrix(0, nrow(data) , ncol(data))
 
-  for (j in seq(1, dim(data)[2])){
-    for(i in seq(1, window-1)) {
-      x[i,j] <- data[i,j]
-    }
-
-    for(i in seq(window, dim(data)[1])) {
-      x[i,j] <- mean(data[(i-window+1):i,j])
-    }
-  }
-
-  colnames(x) <- newColname
-  xts(x,index(data))
 }
 
 #' Using exponential smoothing method to profile stock data
