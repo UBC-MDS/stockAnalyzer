@@ -67,7 +67,7 @@ exponentialSmoothing <- function() {
 #' @examples
 #' library(quantmod)
 #' getSymbols("AAPL")
-#' visMA_AAPL <- visMovingAverage(AAPL, 50, paste("movingAverage", colnames(AAPL), sep="_"))
+#' visMA_AAPL <- visMovingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_"))
 visMovingAverage <- function() {
   return(NULL)
 }
@@ -90,4 +90,3 @@ visMovingAverage <- function() {
 visExpSmoothing <- function() {
   return(NULL)
 }
-
