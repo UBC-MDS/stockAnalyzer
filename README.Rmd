@@ -68,7 +68,7 @@ This is a basic example which shows how to generate summary statistics and condu
 library(quantmod)
 getSymbols("AAPL")
 
-library(stockAnalyzer)
+#library(stockAnalyzer)
 summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
 moving_avg_AAPL <- movingAverage(AAPL,300,paste("moveAverage", colnames(AAPL), sep="_"))
 
