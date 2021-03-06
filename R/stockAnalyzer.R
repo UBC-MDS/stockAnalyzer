@@ -49,8 +49,20 @@ movingAverage <- function(data, window, newColname) {
   xts(x,index(data))
 }
 
-
-
+#' Using exponential smoothing method to profile stock data
+#'
+#' @param data xts
+#' @param newColname character
+#' @param alpha numeric
+#'
+#' @return xts
+#' @export
+#'
+#' @examples
+#'
+#'library(quantmod)
+#' getSymbols("AAPL")
+#' exp_smoothing_AAPL <- movingAverage(AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3)
 exponentialSmoothing <- function() {
 
 }
