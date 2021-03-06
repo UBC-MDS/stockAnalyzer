@@ -61,7 +61,7 @@ This function creates a line chart showing the raw historical data and fitted da
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows how to generate summary statistics and conduct moving average modelling:
 
 ```{r example}
 # Download stock price data
@@ -69,9 +69,13 @@ library(quantmod)
 getSymbols("AAPL")
 
 library(stockAnalyzer)
-
+summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
 moving_avg_AAPL <- movingAverage(AAPL,300,paste("moveAverage", colnames(AAPL), sep="_"))
 
 ```
 
-## 
+## R Ecosystem
+
+There are a number of libraries in the R ecosystem that provide functionalities to analyze time series data. For example, `Tidyverse` has comprehensive functionalities for basic summary statistics. Libraries including `data.table`, `smooth` provide functions to calculate moving average. Libraries including `smooth` and `forecast` both provide functions to conduct exponential smoothing. `ggplot2` is most widely used for visualizations. 
+
+In terms of financial data analysis, there are also a wide range of packages. Widely used ones include [`RQuantLib`](https://cran.r-project.org/web/packages/RQuantLib/index.html), ['quantmod'](https://cran.r-project.org/web/packages/quantmod/index.html). 

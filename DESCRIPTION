@@ -3,7 +3,7 @@ Type: Package
 Title: Provide basic time series modelling functionalities to analyze historical stock prices
 Version: 0.1.0
 Author: Kangyu (Mark) Wang, Sicheng (Marc) Sun, Tingyu Zhang, William Xu
-Maintainer: The package maintainer <yourself@somewhere.net>
+Maintainer: The package maintainers <changguang@outlook.com>
 Description: This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. 
 Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. 
 Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. 
