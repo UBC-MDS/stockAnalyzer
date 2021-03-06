@@ -87,6 +87,6 @@ visMovingAverage <- function(data, window, newColname) {
 #' library(quantmod)
 #' getSymbols("AAPL")
 #' visES_AAPL <- visExpSmoothing(AAPL, 0.3, paste("exponentialSmoothing", colnames(AAPL), sep="_"))
-visExpSmoothing <- function() {
+visExpSmoothing <- function(data, alpha, newColname) {
   return(NULL)
 }
