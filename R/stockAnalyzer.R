@@ -2,14 +2,13 @@
 
 #' Generate summary statistics for profile stock data
 #'
-#' @param data A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr).
+#' @param data A data frame, data frame extension (e.g. a tibble), a lazy data frame (e.g. from dbplyr or dtplyr), or a time series object (xts)
 #' @param measurements character
 #' @return tibble
 #' @export
 #'
 #' @examples
-#' library(quantmod)
-#' getSymbols("AAPL")
+#' quantmod::getSymbols("AAPL")
 #' summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
 #'
 summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
@@ -28,12 +27,10 @@ summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
 #' @export
 #'
 #' @examples
-#' library(quantmod)
-#' getSymbols("AAPL")
+#' quantmod::getSymbols("AAPL")
 #' moving_avg_AAPL <- movingAverage(AAPL,300,paste("movingAverage", colnames(AAPL), sep="_"))
 movingAverage <- function(data, window, newColname) {
-
-
+  return(NULL)
 }
 
 #' Using exponential smoothing method to profile stock data
@@ -47,11 +44,12 @@ movingAverage <- function(data, window, newColname) {
 #'
 #' @examples
 #'
-#'library(quantmod)
-#' getSymbols("AAPL")
-#' exp_smoothing_AAPL <- movingAverage(AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3)
-exponentialSmoothing <- function() {
-
+#' quantmod::getSymbols("AAPL")
+#' exp_smoothing_AAPL <- exponentialSmoothing(
+#'     AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3
+#'     )
+exponentialSmoothing <- function(data, newColname, alpha) {
+  return(NULL)
 }
 
 #' Visualizing the trend of the stock by using moving average method
@@ -64,8 +62,7 @@ exponentialSmoothing <- function() {
 #' @export
 #'
 #' @examples
-#' library(quantmod)
-#' getSymbols("AAPL")
+#' quantmod::getSymbols("AAPL")
 #' visMA_AAPL <- visMovingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_"))
 visMovingAverage <- function(data, window, newColname) {
   return(NULL)
@@ -83,8 +80,7 @@ visMovingAverage <- function(data, window, newColname) {
 #' @export
 #'
 #' @examples
-#' library(quantmod)
-#' getSymbols("AAPL")
+#' quantmod::getSymbols("AAPL")
 #' visES_AAPL <- visExpSmoothing(AAPL, 0.3, paste("exponentialSmoothing", colnames(AAPL), sep="_"))
 visExpSmoothing <- function(data, alpha, newColname) {
   return(NULL)
