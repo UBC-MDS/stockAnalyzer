@@ -2,19 +2,70 @@
 
 #' Generate summary statistics for profile stock data
 #'
-#' @param data A data frame, data frame extension (e.g. a tibble), a lazy data frame (e.g. from dbplyr or dtplyr), or a time series object (xts)
+#' @param data xts a time series object
 #' @param measurements character
 #' @return tibble
 #' @export
 #'
 #' @examples
 #' quantmod::getSymbols("AAPL")
-#' summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
+#' summary_stats_AAPL <- summaryStats(AAPL)
 #'
-summaryStats <- function(data, measurements=c("High", "Low", "Open", "Close")) {
-  return(NULL)
-}
-
+summaryStats <-
+  function(data,
+           measurements = colnames(data)) {
+    if (class(data)[1] != "xts") {
+      stop('Your input data should be in Extensible Time Series (xts) format.')
+    }
+    stats <-
+      list(vector(), vector(), vector(), vector(), vector(), vector())
+    names(stats) <-
+      c("measurement", "mean", "min", "max", "volatility", "return")
+    for (measurement in measurements) {
+      if (measurement %in% colnames(data) == FALSE) {
+        stop(
+          paste0(
+            "Your specified measurement '",
+            measurement,
+            "' is not a column name of the data. Please double check the column names in data."
+          )
+        )
+      }
+      x <- matrix(0, nrow(data) , ncol(data))
+      for (j in seq(1, dim(data)[2])) {
+        for (i in seq(1, dim(data)[1])) {
+          x[i, j] <- data[i, j]
+        }
+      }
+      colnames(x) <- colnames(data)
+      data_measurement <- x[, measurement]
+      data_measurement <- tryCatch({
+        as.numeric(data_measurement)
+      },
+      warning = function(w) {
+        stop(
+          paste0(
+            "Data in column '",
+            measurement,
+            "' of your input data cannot be converted to numeric format."
+          )
+        )
+      })
+      stats[["measurement"]] <-
+        append(stats[["measurement"]], measurement)
+      stats[["mean"]] <-
+        append(stats[["mean"]], mean(data_measurement, na.rm=TRUE))
+      stats[["min"]] <-
+        append(stats[["min"]], min(data_measurement, na.rm=TRUE))
+      stats[["max"]] <-
+        append(stats[["max"]], max(data_measurement, na.rm=TRUE))
+      stats[["volatility"]] <-
+        append(stats[["volatility"]], sd(data_measurement, na.rm=TRUE))
+      stats[["return"]] <-
+        append(stats[["return"]], (tail(data_measurement, n = 1) - data_measurement[1]) / data_measurement[1])
+    }
+    dplyr::as_tibble(stats)
+  }
 
 
 #' Using moving average method to profile stock data
