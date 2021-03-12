@@ -124,16 +124,30 @@ exponentialSmoothing <- function(data, newColname, alpha) {
 #'
 #' @param data A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr)
 #' @param window A numeric vector of the size of the window (number of days) used in moving average calculation
-#' @param newColname a character vector of the name of the column to be used in moving average calculation (such as Close, Adj Close)
+#' @param name a character vector of the name of the column to be used in moving average calculation
 #'
 #' @return ggplot line plot of specific stock's historical prices and moving average prices
 #' @export
 #'
 #' @examples
 #' quantmod::getSymbols("AAPL")
-#' visMA_AAPL <- visMovingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_"))
-visMovingAverage <- function(data, window, newColname) {
-  return(NULL)
+#' visMA_AAPL <- visMovingAverage(AAPL, 300, 'AAPL.Close')
+visMovingAverage <- function(data, window, name) {
+  if (name %in% colnames(data) == FALSE) {
+    stop("Your input name does not match with the dataframe column name! Please enter valid column name!")
+  }
+  df_avgs <- movingAverage(data, window, paste("movingAverage", colnames(data), sep="_"))
+
+  df_avgs <-
+    tibble::tibble(Date = as.Date(zoo::index(df_avgs)) , value = as.numeric(df_avgs[, paste0("movingAverage_", name)]))
+
+  data <-
+    tibble::tibble(Date = as.Date(zoo::index(data)) , value = as.numeric(data[, name]))
+
+  ggplot2:ggplot(df_avgs, aes(x = Date, y = value)) +
+    geom_line(color = "#0abab5") +
+    geom_line(data, mapping = aes(x = Date, y = value), color = "#00008b")
+
 }
 
 
@@ -142,14 +156,14 @@ visMovingAverage <- function(data, window, newColname) {
 #'
 #' @param data A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr)
 #' @param alpha A numeric vector of the smoothing parameter which defines the weighting. It should be between 0 and 1
-#' @param newColname a character vector of the name of the column to be used in moving average calculation (such as Close, Adj Close)
+#' @param newColname a character vector of the name of the column to be used in moving average calculation
 #'
 #' @return ggplot line plot of specific stock's historical prices and exponentially smoothed prices
 #' @export
 #'
 #' @examples
 #' quantmod::getSymbols("AAPL")
-#' visES_AAPL <- visExpSmoothing(AAPL, 0.3, paste("exponentialSmoothing", colnames(AAPL), sep="_"))
+#' visES_AAPL <- visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
 visExpSmoothing <- function(data, alpha, newColname) {
   return(NULL)
 }
