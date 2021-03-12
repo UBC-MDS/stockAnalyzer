@@ -126,7 +126,7 @@ exponentialSmoothing <- function(data, newColname, alpha) {
 #' @param window A numeric vector of the size of the window (number of days) used in moving average calculation
 #' @param name a character vector of the name of the column to be used in moving average calculation
 #'
-#' @return ggplot line plot of specific stock's historical prices and moving average prices
+#' @return A ggplot line plot of specific stock's historical prices and moving average prices
 #' @export
 #'
 #' @examples
@@ -144,10 +144,12 @@ visMovingAverage <- function(data, window, name) {
   data <-
     tibble::tibble(Date = as.Date(zoo::index(data)) , value = as.numeric(data[, name]))
 
-  ggplot2:ggplot(df_avgs, aes(x = Date, y = value)) +
-    geom_line(color = "#0abab5") +
-    geom_line(data, mapping = aes(x = Date, y = value), color = "#00008b")
 
+  sma_plot <- ggplot2::ggplot(df_avgs) +
+    ggplot2::geom_line(ggplot2::aes_string(x = "Date", y = "value"), color = "#0abab5") +
+    ggplot2::geom_line(data, mapping = ggplot2::aes_string(x = "Date", y = "value"), color = "#00008b")
+
+  sma_plot
 }
 
 

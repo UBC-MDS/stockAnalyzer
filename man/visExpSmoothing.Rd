@@ -11,7 +11,7 @@ visExpSmoothing(data, alpha, newColname)
 
 \item{alpha}{A numeric vector of the smoothing parameter which defines the weighting. It should be between 0 and 1}
 
-\item{newColname}{a character vector of the name of the column to be used in moving average calculation (such as Close, Adj Close)}
+\item{newColname}{a character vector of the name of the column to be used in moving average calculation}
 }
 \value{
 ggplot line plot of specific stock's historical prices and exponentially smoothed prices
@@ -21,5 +21,5 @@ Using the trend of the stock by using exponential smoothing method
 }
 \examples{
 quantmod::getSymbols("AAPL")
-visES_AAPL <- visExpSmoothing(AAPL, 0.3, paste("exponentialSmoothing", colnames(AAPL), sep="_"))
+visES_AAPL <- visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
 }

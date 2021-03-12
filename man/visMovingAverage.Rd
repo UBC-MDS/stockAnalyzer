@@ -4,22 +4,22 @@
 \alias{visMovingAverage}
 \title{Visualizing the trend of the stock by using moving average method}
 \usage{
-visMovingAverage(data, window, newColname)
+visMovingAverage(data, window, name)
 }
 \arguments{
 \item{data}{A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr)}
 
 \item{window}{A numeric vector of the size of the window (number of days) used in moving average calculation}
 
-\item{newColname}{a character vector of the name of the column to be used in moving average calculation (such as Close, Adj Close)}
+\item{name}{a character vector of the name of the column to be used in moving average calculation}
 }
 \value{
-ggplot line plot of specific stock's historical prices and moving average prices
+A ggplot line plot of specific stock's historical prices and moving average prices
 }
 \description{
 Visualizing the trend of the stock by using moving average method
 }
 \examples{
 quantmod::getSymbols("AAPL")
-visMA_AAPL <- visMovingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_"))
+visMA_AAPL <- visMovingAverage(AAPL, 300, 'AAPL.Close')
 }
