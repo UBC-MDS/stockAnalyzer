@@ -7,7 +7,7 @@
 exponentialSmoothing(data, newColname, alpha)
 }
 \arguments{
-\item{data}{xts}
+\item{data}{xts a time series object}
 
 \item{newColname}{character}
 

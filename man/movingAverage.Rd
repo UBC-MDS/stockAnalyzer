@@ -21,5 +21,5 @@ Using moving average method to profile stock data
 }
 \examples{
 quantmod::getSymbols("AAPL")
-moving_avg_AAPL <- movingAverage(AAPL,300,paste("movingAverage", colnames(AAPL), sep="_"))
+moving_avg_AAPL <- movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_"))
 }
