@@ -84,6 +84,20 @@ summaryStats <-
 #' quantmod::getSymbols("AAPL")
 #' moving_avg_AAPL <- movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_"))
 movingAverage <- function(data, window, newColname) {
+  if (class(data)[1] != "xts") {
+    stop('Your input data should be in Extensible Time Series (xts) format.')
+  }
+
+  if (class(window) != "numeric") {
+    stop('Your input window should be numeric.')
+  }
+
+  for (col in colnames(data)) {
+    if (is.numeric(data[,col]) != TRUE) {
+      stop('Your input data should be numeric.')
+    }
+  }
+
   x <- matrix(0, nrow(data) , ncol(data))
 
   for (j in seq(1, dim(data)[2])) {
@@ -92,7 +106,7 @@ movingAverage <- function(data, window, newColname) {
     }
 
     for (i in seq(window, dim(data)[1])) {
-      x[i, j] <- mean(data[(i - window + 1):i, j])
+      x[i, j] <- mean(data[(i - window + 1):i, j], na.rm  = TRUE)
     }
   }
 
