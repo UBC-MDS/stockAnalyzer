@@ -4,10 +4,10 @@
 \alias{summaryStats}
 \title{Generate summary statistics for profile stock data}
 \usage{
-summaryStats(data, measurements = c("High", "Low", "Open", "Close"))
+summaryStats(data, measurements = colnames(data))
 }
 \arguments{
-\item{data}{A data frame, data frame extension (e.g. a tibble), a lazy data frame (e.g. from dbplyr or dtplyr), or a time series object (xts)}
+\item{data}{xts a time series object}
 
 \item{measurements}{character}
 }
@@ -19,6 +19,6 @@ Generate summary statistics for profile stock data
 }
 \examples{
 quantmod::getSymbols("AAPL")
-summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
+summary_stats_AAPL <- summaryStats(AAPL)
 
 }

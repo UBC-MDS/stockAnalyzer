@@ -1,5 +1,6 @@
 
 
+
 #' Generate summary statistics for profile stock data
 #'
 #' @param data xts a time series object
@@ -54,15 +55,17 @@ summaryStats <-
       stats[["measurement"]] <-
         append(stats[["measurement"]], measurement)
       stats[["mean"]] <-
-        append(stats[["mean"]], mean(data_measurement, na.rm=TRUE))
+        append(stats[["mean"]], mean(data_measurement, na.rm = TRUE))
       stats[["min"]] <-
-        append(stats[["min"]], min(data_measurement, na.rm=TRUE))
+        append(stats[["min"]], min(data_measurement, na.rm = TRUE))
       stats[["max"]] <-
-        append(stats[["max"]], max(data_measurement, na.rm=TRUE))
+        append(stats[["max"]], max(data_measurement, na.rm = TRUE))
       stats[["volatility"]] <-
-        append(stats[["volatility"]], sd(data_measurement, na.rm=TRUE))
+        append(stats[["volatility"]], stats::sd(data_measurement, na.rm =
+                                                  TRUE))
       stats[["return"]] <-
-        append(stats[["return"]], (tail(data_measurement, n = 1) - data_measurement[1]) / data_measurement[1])
+        append(stats[["return"]],
+               (utils::tail(data_measurement, n = 1) - data_measurement[1]) / data_measurement[1])
     }
     dplyr::as_tibble(stats)
   }
@@ -81,21 +84,20 @@ summaryStats <-
 #' quantmod::getSymbols("AAPL")
 #' moving_avg_AAPL <- movingAverage(AAPL,300,paste("movingAverage", colnames(AAPL), sep="_"))
 movingAverage <- function(data, window, newColname) {
-
   x <- matrix(0, nrow(data) , ncol(data))
 
-  for (j in seq(1, dim(data)[2])){
-    for(i in seq(1, window-1)) {
-      x[i,j] <- data[i,j]
+  for (j in seq(1, dim(data)[2])) {
+    for (i in seq(1, window - 1)) {
+      x[i, j] <- data[i, j]
     }
 
-    for(i in seq(window, dim(data)[1])) {
-      x[i,j] <- mean(data[(i-window+1):i,j])
+    for (i in seq(window, dim(data)[1])) {
+      x[i, j] <- mean(data[(i - window + 1):i, j])
     }
   }
 
   colnames(x) <- newColname
-  xts::xts(x,index(data))
+  xts::xts(x, zoo::index(data))
 }
 
 
