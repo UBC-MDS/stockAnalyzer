@@ -117,7 +117,21 @@ movingAverage <- function(data, window, newColname) {
 #'     AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3
 #'     )
 exponentialSmoothing <- function(data, newColname, alpha) {
-  return(NULL)
+  x <- matrix(0, nrow(data) , ncol(data))
+
+  for (j in seq(1, ncol(data))) {
+    St_prev = data[1,j]
+
+    for (i in seq(1, nrow(data))) {
+      yt = data[i,j]
+      St = alpha * yt + St_prev * (1 - alpha)
+      x[i,j] <- St
+      St_prev = St
+    }
+  }
+  
+  colnames(x) <- newColname
+  xts::xts(x, zoo::index(data))
 }
 
 #' Visualizing the trend of the stock by using moving average method
