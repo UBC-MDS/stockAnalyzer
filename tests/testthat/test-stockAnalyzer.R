@@ -35,3 +35,17 @@ test_that("summaryStats() returns summary statistics of given xts file", {
   expect_equal(summaryStats(data_5, measurements=c("x", "y"))$return[1], -0.8)
 }
 )
+
+test_that("visMovingAverage() returns ggplot of original and moving average data", {
+  data <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
+  vis <- visMovingAverage(data, 2, name="y")
+
+  expect_equal(length(vis$layers), 2)
+  expect_equal(rlang::as_string(rlang::get_expr(vis$layers[[1]]$mapping$x)), "Date")
+  expect_equal(rlang::as_string(rlang::get_expr(vis$layers[[1]]$mapping$y)), "value")
+  expect_equal(rlang::as_string(rlang::get_expr(vis$layers[[2]]$mapping$x)), "Date")
+  expect_equal(rlang::as_string(rlang::get_expr(vis$layers[[2]]$mapping$y)), "value")
+  expect_equal(class(vis$layers[[1]]$geom)[1], "GeomLine")
+  expect_equal(class(vis$layers[[2]]$geom)[1], "GeomLine")
+}
+)

@@ -4,14 +4,14 @@
 \alias{visExpSmoothing}
 \title{Using the trend of the stock by using exponential smoothing method}
 \usage{
-visExpSmoothing(data, alpha, newColname)
+visExpSmoothing(data, alpha, name)
 }
 \arguments{
-\item{data}{A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr)}
+\item{data}{xts a time series object}
 
 \item{alpha}{A numeric vector of the smoothing parameter which defines the weighting. It should be between 0 and 1}
 
-\item{newColname}{a character vector of the name of the column to be used in moving average calculation}
+\item{name}{a character vector of the name of the column to be used in moving average calculation}
 }
 \value{
 ggplot line plot of specific stock's historical prices and exponentially smoothed prices

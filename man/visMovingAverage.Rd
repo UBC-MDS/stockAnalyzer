@@ -7,7 +7,7 @@
 visMovingAverage(data, window, name)
 }
 \arguments{
-\item{data}{A data frame, data frame extension (e.g. a tibble), or a lazy data frame (e.g. from dbplyr or dtplyr)}
+\item{data}{xts a time series object}
 
 \item{window}{A numeric vector of the size of the window (number of days) used in moving average calculation}
 

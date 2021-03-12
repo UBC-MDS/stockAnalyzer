@@ -82,7 +82,7 @@ summaryStats <-
 #'
 #' @examples
 #' quantmod::getSymbols("AAPL")
-#' moving_avg_AAPL <- movingAverage(AAPL,300,paste("movingAverage", colnames(AAPL), sep="_"))
+#' moving_avg_AAPL <- movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_"))
 movingAverage <- function(data, window, newColname) {
   x <- matrix(0, nrow(data) , ncol(data))
 
@@ -174,15 +174,16 @@ visExpSmoothing <- function(data, alpha, name) {
   df_smoothed <- exponentialSmoothing(data, alpha, paste("expsmoothing", colnames(data), sep="_"))
 
   df_smoothed <-
-    tibble::tibble(Date = as.Date(zoo::index(df_avgs)) , value = as.numeric(df_smoothed[, paste0("expsmoothing", name)]))
+    tibble::tibble(Date = as.Date(zoo::index(df_smoothed)) , value = as.numeric(df_smoothed[, paste0("expsmoothing", name)]))
 
   data <-
     tibble::tibble(Date = as.Date(zoo::index(data)) , value = as.numeric(data[, name]))
 
-  ggplot2:ggplot(df_smoothed, aes(x = Date, y = value)) +
-    geom_line(color = "#0abab5") +
-    geom_line(data, mapping = aes(x = Date, y = value), color = "#00008b") +
-    ggtitle("Stock Price History with Exponential Smoothing") +
-    ylab("Price")
+  expsm_plot <- ggplot2::ggplot(df_smoothed) +
+    ggplot2::geom_line(ggplot2::aes_string(x = "Date", y = "value"), color = "#0abab5") +
+    ggplot2::geom_line(data, mapping = ggplot2::aes_string(x = "Date", y = "value"), color = "#00008b") +
+    ggplot2::ggtitle("Stock Price History with Exponential Smoothing") +
+    ggplot2::ylab("Price")
 
+  expsm_plot
 }
