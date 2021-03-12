@@ -36,7 +36,7 @@ test_that("summaryStats() returns summary statistics of given xts file", {
 }
 )
 
-test_that("visMovingAverage() returns ggplot of original and moving average data", {
+test_that("visMovingAverage() should return ggplot of original and moving average data", {
   data <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
   vis <- visMovingAverage(data, 2, name="y")
 
@@ -47,5 +47,19 @@ test_that("visMovingAverage() returns ggplot of original and moving average data
   expect_equal(rlang::as_string(rlang::get_expr(vis$layers[[2]]$mapping$y)), "value")
   expect_equal(class(vis$layers[[1]]$geom)[1], "GeomLine")
   expect_equal(class(vis$layers[[2]]$geom)[1], "GeomLine")
+}
+)
+
+test_that("visExpSmoothing() should return ggplot of original and exponential smoothing data", {
+  data <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
+  vis2 <- visExpSmoothing(data, 0.3, name="y")
+
+  expect_equal(length(vis2$layers), 2)
+  expect_equal(rlang::as_string(rlang::get_expr(vis2$layers[[1]]$mapping$x)), "Date")
+  expect_equal(rlang::as_string(rlang::get_expr(vis2$layers[[1]]$mapping$y)), "value")
+  expect_equal(rlang::as_string(rlang::get_expr(vis2$layers[[2]]$mapping$x)), "Date")
+  expect_equal(rlang::as_string(rlang::get_expr(vis2$layers[[2]]$mapping$y)), "value")
+  expect_equal(class(vis2$layers[[1]]$geom)[1], "GeomLine")
+  expect_equal(class(vis2$layers[[2]]$geom)[1], "GeomLine")
 }
 )
