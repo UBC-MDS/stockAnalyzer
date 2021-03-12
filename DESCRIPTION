@@ -16,8 +16,8 @@ RoxygenNote: 7.1.1
 Imports:
 	quantmod (>= 0.4.18),
 	xts (>= 0.12.1),
-	zoo (>= 1.8-9),
-	dplyr (>= 1.0.5),
+	zoo (>= 1.8-8),
+	dplyr (>= 1.0.3),
 	utils
 Suggests: 
     testthat (>= 3.0.0)
