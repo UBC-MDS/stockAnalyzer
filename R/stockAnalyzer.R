@@ -95,7 +95,7 @@ movingAverage <- function(data, window, newColname) {
   }
 
   colnames(x) <- newColname
-  xts(x,index(data))
+  xts::xts(x,index(data))
 }
 
 
