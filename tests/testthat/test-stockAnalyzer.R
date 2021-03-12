@@ -36,6 +36,59 @@ test_that("summaryStats() returns summary statistics of given xts file", {
 }
 )
 
+
+
+test_that("movingAverage() returns a xts object with moving average method", {
+
+  # Wrong input type for data
+  data_0 <- dplyr::as_tibble(iris)
+  expect_error(movingAverage(data_0),
+               "Your input data should be in Extensible Time Series (xts) format.",
+               fixed = TRUE)
+
+
+  # Wrong input type for window
+  data_1 <- xts::xts(x=1:10, order.by=Sys.Date()-1:10)
+  expect_error(movingAverage(data_1, "a"),
+               "Your input window should be numeric.",
+               fixed = TRUE)
+
+  # Non-numeric data
+
+  data_2 <- xts::xts(x=c("a", "b"), order.by=Sys.Date()-1:2)
+  colnames(data_2) <- c("col1")
+  expect_error(movingAverage(data_2, 1, paste("movingAverage", colnames(data_2), sep="_")[,"col1"]),
+               "Your input data should be numeric",
+               fixed = TRUE)
+
+  # NA test
+  data_3 <- xts::xts(x=c(1, 2, NA), order.by=Sys.Date()-1:3)
+  colnames(data_3) <- c("col_1")
+  expect_equal(class(movingAverage(data_3, window = 1, paste("movingAverage", colnames(data_3), sep="_")))[1], "xts")
+  expect_equal(ncol(movingAverage(data_3, window = 1, paste("movingAverage", colnames(data_3), sep="_"))), 1)
+  expect_equal(nrow(movingAverage(data_3, window = 1, paste("movingAverage", colnames(data_3), sep="_"))), 3)
+  expect_equal(sum(is.na(movingAverage(data_3, window = 1, paste("movingAverage", colnames(data_3), sep="_")))),1)
+
+  # normal test
+  data_4 <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
+  expect_true(class(movingAverage(data_4, window = 2, paste("movingAverage", colnames(data_4), sep="_")))[1] == "xts")
+  expect_true(ncol(movingAverage(data_4, window = 2, paste("movingAverage", colnames(data_4), sep="_"))) == 3)
+  expect_true(nrow(movingAverage(data_4, window = 2, paste("movingAverage", colnames(data_4), sep="_"))) == 5)
+  expect_true(colnames(movingAverage(data_4, 2,  paste("movingAverage", colnames(data_4), sep="_")))[1]=="movingAverage_x")
+  expect_true(colnames(movingAverage(data_4, 2,  paste("movingAverage", colnames(data_4), sep="_")))[2]=="movingAverage_y")
+  expect_true(colnames(movingAverage(data_4, 2,  paste("movingAverage", colnames(data_4), sep="_")))[3]=="movingAverage_z")
+  expect_true(class(zoo::index(movingAverage(data_4, 2,  paste("movingAverage", colnames(data_4), sep="_"))))=="Date")
+
+}
+)
+
+
+
+
+
+
+
+
 test_that("visMovingAverage() should return ggplot of original and moving average data", {
   data <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
   vis <- visMovingAverage(data, 2, name="y")
