@@ -104,10 +104,14 @@ getSymbols("AAPL")
 #> This message is shown once per session and may be disabled by setting 
 #> options("getSymbols.warning4.0"=FALSE). See ?getSymbols for details.
 #> [1] "AAPL"
-
+#>
 library(stockAnalyzer)
-summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
-moving_avg_AAPL <- movingAverage(AAPL,300,paste("moveAverage", colnames(AAPL), sep="_"))
+summary_stats_AAPL <- summaryStats(AAPL)
+moving_avg_AAPL <- movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_"))
+exp_smoothing_AAPL <- exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"), 0.3)
+visMA_AAPL <- visMovingAverage(AAPL, 300, 'AAPL.Close')
+visES_AAPL <- visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
+
 ```
 
 ## R Ecosystem
