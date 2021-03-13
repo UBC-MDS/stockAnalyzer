@@ -131,6 +131,26 @@ movingAverage <- function(data, window, newColname) {
 #'     AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3
 #'     )
 exponentialSmoothing <- function(data, newColname, alpha=0.3) {
+  
+  if (class(data)[1] != "xts") {
+    stop('Your input data should be in Extensible Time Series (xts) format.')
+  }
+  
+  if (class(alpha) != "numeric") {
+    stop('Your alpha should be numeric between 0 and 1.')
+  }
+  
+  if (alpha >1 || alpha <0) {
+    stop('Your alpha should be numeric between 0 and 1.')
+  }
+  
+  for (col in colnames(data)) {
+    if (is.numeric(data[,col]) != TRUE) {
+      stop('Your input data should be numeric.')
+    }
+  }
+  
+  
   x <- matrix(0, nrow(data) , ncol(data))
 
   for (j in seq(1, ncol(data))) {
