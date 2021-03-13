@@ -20,14 +20,8 @@ data from Yahoo Finance dataset with customized date range setting.
 
 ## Installation
 
-You can install the released version of stockAnalyzer from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("stockAnalyzer")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -114,7 +108,7 @@ summaryStats(AAPL)
 #> 2 AAPL.High            29.3        2.93        145.        27.7 38.2  
 #> 3 AAPL.Low             28.7        2.79        141.        26.9 39.7  
 #> 4 AAPL.Close           29.0        2.79        143.        27.3 39.4  
-#> 5 AAPL.Volume   412873231.  45448000    3372969600  381551595.  -0.929
+#> 5 AAPL.Volume   412873192.  45448000    3372969600  381551629.  -0.929
 #> 6 AAPL.Adjusted        27.5        2.41        143.        27.5 45.9
 head(movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_")))
 #>            movingAverage_AAPL.Open movingAverage_AAPL.High
