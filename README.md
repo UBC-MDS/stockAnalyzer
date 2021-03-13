@@ -16,7 +16,7 @@ statistics, applies moving average and exponential smoothing models to
 the data, and visualizes in-sample moving average as well as exponential
 smoothing fits. A convenient use case for this package is to combine it
 with the `quantmod` library, which can provide well-formated stock price
-data from Yahoo Finance dataset with customized date range setting. 
+data from Yahoo Finance dataset with customized date range setting.
 
 ## Installation
 
@@ -77,8 +77,9 @@ Close’) for exponential smoothing calculation, and the `alpha` parameter
 
 ## Example
 
-This is a basic example which shows how to generate summary statistics
-and conduct moving average modelling:
+This is a basic example which shows how to generate summary statistics,
+conduct moving average modelling, exponential smoothing modeling, and
+produce visualizations:
 
 ``` r
 # Download stock price data
@@ -106,8 +107,62 @@ getSymbols("AAPL")
 #> [1] "AAPL"
 
 library(stockAnalyzer)
-summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
-moving_avg_AAPL <- movingAverage(AAPL,300,paste("moveAverage", colnames(AAPL), sep="_"))
+summaryStats(AAPL)
+#> # A tibble: 6 x 6
+#>   measurement          mean         min         max  volatility return
+#>   <chr>               <dbl>       <dbl>       <dbl>       <dbl>  <dbl>
+#> 1 AAPL.Open            29.0        2.84        144.        27.3 38.1  
+#> 2 AAPL.High            29.3        2.93        145.        27.7 38.2  
+#> 3 AAPL.Low             28.7        2.79        141.        26.9 39.7  
+#> 4 AAPL.Close           29.0        2.79        143.        27.3 39.4  
+#> 5 AAPL.Volume   412873231.  45448000    3372969600  381551595.  -0.929
+#> 6 AAPL.Adjusted        27.5        2.41        143.        27.5 45.9
+head(movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_")))
+#>            movingAverage_AAPL.Open movingAverage_AAPL.High
+#> 2007-01-03                3.081786                3.092143
+#> 2007-01-04                3.001786                3.069643
+#> 2007-01-05                3.063214                3.078571
+#> 2007-01-08                3.070000                3.090357
+#> 2007-01-09                3.087500                3.320714
+#> 2007-01-10                3.383929                3.492857
+#>            movingAverage_AAPL.Low movingAverage_AAPL.Close
+#> 2007-01-03               2.925000                 2.992857
+#> 2007-01-04               2.993571                 3.059286
+#> 2007-01-05               3.014286                 3.037500
+#> 2007-01-08               3.045714                 3.052500
+#> 2007-01-09               3.041071                 3.306071
+#> 2007-01-10               3.337500                 3.464286
+#>            movingAverage_AAPL.Volume movingAverage_AAPL.Adjusted
+#> 2007-01-03                1238319600                    2.577937
+#> 2007-01-04                 847260400                    2.635158
+#> 2007-01-05                 834741600                    2.616391
+#> 2007-01-08                 797106800                    2.629312
+#> 2007-01-09                3349298400                    2.847729
+#> 2007-01-10                2952880000                    2.984010
+head(exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"), 0.3))
+#>            expsmoothing_AAPL.Open expsmoothing_AAPL.High expsmoothing_AAPL.Low
+#> 2007-01-03               3.081786               3.092143              2.925000
+#> 2007-01-04               3.057786               3.085393              2.945571
+#> 2007-01-05               3.059414               3.083346              2.966186
+#> 2007-01-08               3.062590               3.085450              2.990044
+#> 2007-01-09               3.070063               3.156029              3.005352
+#> 2007-01-10               3.164223               3.257077              3.104997
+#>            expsmoothing_AAPL.Close expsmoothing_AAPL.Volume
+#> 2007-01-03                2.992857               1238319600
+#> 2007-01-04                3.012786               1121001840
+#> 2007-01-05                3.020200               1035123768
+#> 2007-01-08                3.029890                963718678
+#> 2007-01-09                3.112744               1679392594
+#> 2007-01-10                3.218207               2061438816
+#>            expsmoothing_AAPL.Adjusted
+#> 2007-01-03                   2.577937
+#> 2007-01-04                   2.595103
+#> 2007-01-05                   2.601490
+#> 2007-01-08                   2.609836
+#> 2007-01-09                   2.681204
+#> 2007-01-10                   2.772046
+visMA_AAPL <- visMovingAverage(AAPL, 300, 'AAPL.Close')
+visES_AAPL <- visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
 ```
 
 ## R Ecosystem
