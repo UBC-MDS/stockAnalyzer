@@ -63,17 +63,16 @@ the weighting, ranging between 0 and 1) for smoothing.
 
 This function creates a line chart showing the raw historical data and
 fitted data using the moving average method. Users are able to specify
-the dataframe used, the column of choice (such as ‘Close’, ‘Adj Close’)
-for moving average calculation, and the length of moving average window
-(unit: days).
+the dataframe used, the column of choice for moving average calculation,
+and the length of moving average window (unit: days).
 
   - `visExpSmoothing`
 
 This function creates a line chart showing the raw historical data and
 fitted data using the exponential smoothing method. Users are able to
-specify the dataframe used, the column of choice (such as ‘Close’, ‘Adj
-Close’) for exponential smoothing calculation, and the `alpha` parameter
-(which defines the weighting, ranging between 0 and 1) for smoothing.
+specify the dataframe used, the column of choice for exponential
+smoothing calculation, and the `alpha` parameter (which defines the
+weighting, ranging between 0 and 1) for smoothing.
 
 ## Example
 
@@ -161,9 +160,16 @@ head(exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"), 0
 #> 2007-01-08                   2.609836
 #> 2007-01-09                   2.681204
 #> 2007-01-10                   2.772046
-visMA_AAPL <- visMovingAverage(AAPL, 300, 'AAPL.Close')
-visES_AAPL <- visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
+visMovingAverage(AAPL, 300, 'AAPL.Close')
 ```
+
+<img src="man/figures/README-example-1.png" width="100%" />
+
+``` r
+visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
+```
+
+<img src="man/figures/README-example-2.png" width="100%" />
 
 ## R Ecosystem
 
