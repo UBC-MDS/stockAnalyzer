@@ -138,7 +138,7 @@ exponentialSmoothing <- function(data, newColname, alpha) {
 
     for (i in seq(1, nrow(data))) {
       yt = data[i,j]
-      St = alpha * yt + St_prev * (1 - alpha)
+      St = alpha * yt[[1]] + St_prev * (1 - alpha)
       x[i,j] <- St
       St_prev = St
     }
