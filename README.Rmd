@@ -72,9 +72,9 @@ getSymbols("AAPL")
 library(stockAnalyzer)
 summaryStats(AAPL)
 head(movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_")))
-head(exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"), 0.3))
+head(exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"), 0.02))
 visMovingAverage(AAPL, 300, 'AAPL.Close')
-visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
+visExpSmoothing(AAPL, 0.02, 'AAPL.Close')
 ```
 
 ## R Ecosystem
