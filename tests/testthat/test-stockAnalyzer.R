@@ -85,7 +85,7 @@ test_that("movingAverage() returns a xts object with moving average method", {
 
 
 test_that("exponentialSmoothing() returns a xts object with exponential Smoothing", {
-  
+ 
   # Wrong input type for data
   data_0 <- dplyr::as_tibble(iris)
   expect_error(exponentialSmoothing (data_0, paste("exponentialSmoothing", colnames(data_3), sep="_"), 0.3),
@@ -132,10 +132,10 @@ test_that("exponentialSmoothing() returns a xts object with exponential Smoothin
   expect_true(colnames( pred)[2]=="exponentialSmoothing_y")
   expect_true(colnames(pred )[3]=="exponentialSmoothing_z")
   expect_true(class(zoo::index(pred ))=="Date")
-  expect_equal( round(pred[5][[1]],4) , 3.2269 ) 
-  expect_equal( round(pred[5][[2]],4) , 6.4538  ) 
-  expect_equal( round(pred[5][[3]],4) , 9.6807 ) 
-  
+  expect_equal( round(pred[5][[1]],4) , 3.2269 )
+  expect_equal( round(pred[5][[2]],4) , 6.4538  )
+  expect_equal( round(pred[5][[3]],4) , 9.6807 )
+
 }
 )
 
