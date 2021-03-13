@@ -86,6 +86,19 @@ test_that("movingAverage() returns a xts object with moving average method", {
 
 test_that("exponentialSmoothing() returns a xts object with exponential Smoothing", {
   
+  
+  
+  # NA test
+  data_3 <- xts::xts(x=c(1, 2, NA), order.by=Sys.Date()-1:3)
+  
+  pred <- exponentialSmoothing (data_3, paste("exponentialSmoothing", colnames(data_3), sep="_"), 0.3)
+  colnames(data_3) <- c("col_1")
+  expect_equal(class(pred)[1], "xts")
+  expect_equal(ncol(pred), 1)
+  expect_equal(nrow(pred), 3)
+  expect_equal(sum(is.na(pred)), 3)
+  data_3
+  
   # normal test
   data <- xts::xts(cbind(x=seq(5,1) , y=seq(10,2,-2), z=seq(15,3,-3)), order.by=Sys.Date()-1:5)
   pred <- exponentialSmoothing (data, paste("exponentialSmoothing", colnames(data_4), sep="_"), 0.3)
