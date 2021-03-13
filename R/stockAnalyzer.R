@@ -130,20 +130,20 @@ movingAverage <- function(data, window, newColname) {
 #' exp_smoothing_AAPL <- exponentialSmoothing(
 #'     AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3
 #'     )
-exponentialSmoothing <- function(data, newColname, alpha) {
+exponentialSmoothing <- function(data, newColname, alpha=0.3) {
   x <- matrix(0, nrow(data) , ncol(data))
 
   for (j in seq(1, ncol(data))) {
-    St_prev = data[1,j]
+    St_prev <- data[1,j]
 
     for (i in seq(1, nrow(data))) {
-      yt = data[i,j]
-      St = alpha * yt[[1]] + St_prev * (1 - alpha)
+      yt <- data[i,j]
+      St <- as.numeric(alpha * yt) + as.numeric(St_prev * (1 - alpha))
       x[i,j] <- St
-      St_prev = St
+      St_prev <- St
     }
   }
-  
+
   colnames(x) <- newColname
   xts::xts(x, zoo::index(data))
 }
@@ -199,10 +199,10 @@ visExpSmoothing <- function(data, alpha, name) {
   if (name %in% colnames(data) == FALSE) {
     stop("Your input name does not match with the dataframe column name! Please enter valid column name!")
   }
-  df_smoothed <- exponentialSmoothing(data, alpha, paste("expsmoothing", colnames(data), sep="_"))
+  df_smoothed <- exponentialSmoothing(data, paste("expsmoothing", colnames(data), sep="_"), alpha)
 
   df_smoothed <-
-    tibble::tibble(Date = as.Date(zoo::index(df_smoothed)) , value = as.numeric(df_smoothed[, paste0("expsmoothing", name)]))
+    tibble::tibble(Date = as.Date(zoo::index(df_smoothed)) , value = as.numeric(df_smoothed[, paste0("expsmoothing_", name)]))
 
   data <-
     tibble::tibble(Date = as.Date(zoo::index(data)) , value = as.numeric(data[, name]))
