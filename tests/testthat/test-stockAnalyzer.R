@@ -85,14 +85,14 @@ test_that("movingAverage() returns a xts object with moving average method", {
 
 
 test_that("exponentialSmoothing() returns a xts object with exponential Smoothing", {
- 
+
   # Wrong input type for data
   data_0 <- dplyr::as_tibble(iris)
   expect_error(exponentialSmoothing (data_0, paste("exponentialSmoothing", colnames(data_3), sep="_"), 0.3),
                "Your input data should be in Extensible Time Series (xts) format.",
                fixed = TRUE)
-  
-  
+
+
   # Wrong input type or value for alpha
   data_1 <- xts::xts(x=1:10, order.by=Sys.Date()-1:10)
   expect_error(exponentialSmoothing (data_1, paste("exponentialSmoothing", colnames(data_3), sep="_"), '0.3'),
@@ -101,28 +101,28 @@ test_that("exponentialSmoothing() returns a xts object with exponential Smoothin
   expect_error(exponentialSmoothing (data_1, paste("exponentialSmoothing", colnames(data_3), sep="_"), 2),
                "Your alpha should be numeric between 0 and 1.",
                fixed = TRUE)
-  
-  
+
+
   # Non-numeric data
   data_2 <- xts::xts(x=c("a", "b"), order.by=Sys.Date()-1:2)
   colnames(data_2) <- c("col1")
   expect_error(exponentialSmoothing (data_2, paste("exponentialSmoothing", colnames(data_3), sep="_"), 0.3),
                "Your input data should be numeric",
                fixed = TRUE)
-  
-  
+
+
   # NA test
   data_3 <- xts::xts(x=c(1, 2, NA), order.by=Sys.Date()-1:3)
-  
+
   pred <- exponentialSmoothing (data_3, paste("exponentialSmoothing", colnames(data_3), sep="_"), 0.3)
   colnames(data_3) <- c("col_1")
   expect_equal(class(pred)[1], "xts")
   expect_equal(ncol(pred), 1)
   expect_equal(nrow(pred), 3)
   expect_equal(sum(is.na(pred)), 3)
-  
+
   # Normal test
-  
+
   data_4 <- xts::xts(cbind(x=seq(5,1) , y=seq(10,2,-2), z=seq(15,3,-3)), order.by=Sys.Date()-1:5)
   pred <- exponentialSmoothing (data_4, paste("exponentialSmoothing", colnames(data_4), sep="_"), 0.3)
   expect_true(class(pred )[1] == "xts")
@@ -140,9 +140,13 @@ test_that("exponentialSmoothing() returns a xts object with exponential Smoothin
 )
 
 
-
-
 test_that("visMovingAverage() should return ggplot of original and moving average data", {
+  # Wrong name input
+  data_0 <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
+  expect_error(visMovingAverage(data_0, 2, "hello"),
+               "Your input name does not match with the dataframe column name! Please enter valid column name!",
+               fixed = TRUE)
+
   data <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
   vis <- visMovingAverage(data, 2, name="y")
 
@@ -157,6 +161,13 @@ test_that("visMovingAverage() should return ggplot of original and moving averag
 )
 
 test_that("visExpSmoothing() should return ggplot of original and exponential smoothing data", {
+  # Wrong name input
+  data_0 <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
+  expect_error(visExpSmoothing(data_0, 0.3, "hello"),
+               "Your input name does not match with the dataframe column name! Please enter valid column name!",
+               fixed = TRUE)
+
+
   data <- xts::xts(cbind(x=1:5, y=5:1, z=2:6), order.by=Sys.Date()-1:5)
   vis2 <- visExpSmoothing(data, 0.3, name="y")
 
