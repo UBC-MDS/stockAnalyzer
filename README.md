@@ -16,7 +16,7 @@ statistics, applies moving average and exponential smoothing models to
 the data, and visualizes in-sample moving average as well as exponential
 smoothing fits. A convenient use case for this package is to combine it
 with the `quantmod` library, which can provide well-formated stock price
-data from Yahoo Finance dataset with customized date range setting. 
+data from Yahoo Finance dataset with customized date range setting.
 
 ## Installation
 
@@ -77,8 +77,8 @@ Close’) for exponential smoothing calculation, and the `alpha` parameter
 
 ## Example
 
-This is a basic example which shows how to generate summary statistics, 
-conduct moving average modelling, exponential smoothing modeling, and 
+This is a basic example which shows how to generate summary statistics,
+conduct moving average modelling, exponential smoothing modeling, and
 produce visualizations:
 
 ``` r
@@ -105,7 +105,7 @@ getSymbols("AAPL")
 #> This message is shown once per session and may be disabled by setting 
 #> options("getSymbols.warning4.0"=FALSE). See ?getSymbols for details.
 #> [1] "AAPL"
-#>
+
 library(stockAnalyzer)
 summaryStats(AAPL)
 #> # A tibble: 6 x 6
@@ -116,7 +116,7 @@ summaryStats(AAPL)
 #> 3 AAPL.Low             28.7        2.79        141.        26.9 39.7  
 #> 4 AAPL.Close           29.0        2.79        143.        27.3 39.4  
 #> 5 AAPL.Volume   412873231.  45448000    3372969600  381551595.  -0.929
-#> 6 AAPL.Adjusted        27.5        2.41        143.        27.5 45.9 
+#> 6 AAPL.Adjusted        27.5        2.41        143.        27.5 45.9
 head(movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_")))
 #>            movingAverage_AAPL.Open movingAverage_AAPL.High
 #> 2007-01-03                3.081786                3.092143
@@ -139,8 +139,7 @@ head(movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_")))
 #> 2007-01-08                 797106800                    2.629312
 #> 2007-01-09                3349298400                    2.847729
 #> 2007-01-10                2952880000                    2.984010
-head(exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"
-), 0.3))
+head(exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"), 0.3))
 #>            expsmoothing_AAPL.Open expsmoothing_AAPL.High expsmoothing_AAPL.Low
 #> 2007-01-03               3.081786               3.092143              2.925000
 #> 2007-01-04               3.057786               3.085393              2.945571
@@ -164,7 +163,6 @@ head(exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"
 #> 2007-01-10                   2.772046
 visMA_AAPL <- visMovingAverage(AAPL, 300, 'AAPL.Close')
 visES_AAPL <- visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
-
 ```
 
 ## R Ecosystem

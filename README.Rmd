@@ -62,17 +62,19 @@ This function creates a line chart showing the raw historical data and fitted da
 
 ## Example
 
-This is a basic example which shows how to generate summary statistics and conduct moving average modelling:
+This is a basic example which shows how to generate summary statistics, conduct moving average modelling, exponential smoothing modeling, and produce visualizations:
 
 ```{r example}
 # Download stock price data
 library(quantmod)
 getSymbols("AAPL")
 
-#library(stockAnalyzer)
-summary_stats_AAPL <- summaryStats(AAPL, measurements=c("High", "Low", "Open", "Close"))
-moving_avg_AAPL <- movingAverage(AAPL,300,paste("moveAverage", colnames(AAPL), sep="_"))
-
+library(stockAnalyzer)
+summaryStats(AAPL)
+head(movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_")))
+head(exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_"), 0.3))
+visMA_AAPL <- visMovingAverage(AAPL, 300, 'AAPL.Close')
+visES_AAPL <- visExpSmoothing(AAPL, 0.3, 'AAPL.Close')
 ```
 
 ## R Ecosystem
