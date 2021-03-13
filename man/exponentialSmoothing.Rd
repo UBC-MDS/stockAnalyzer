@@ -4,7 +4,7 @@
 \alias{exponentialSmoothing}
 \title{Using exponential smoothing method to profile stock data}
 \usage{
-exponentialSmoothing(data, newColname, alpha)
+exponentialSmoothing(data, newColname, alpha = 0.3)
 }
 \arguments{
 \item{data}{xts a time series object}
