@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions)[![test-coverage](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml)[![codecov](https://codecov.io/gh/UBC-MDS/stockAnalyzer/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/stockAnalyzer)
+[![R-CMD-check](https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions) [![test-coverage](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml) [![codecov](https://codecov.io/gh/UBC-MDS/stockAnalyzer/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/stockAnalyzer)
 <!-- badges: end -->
 
 This is an R package that provides basic time series modelling
