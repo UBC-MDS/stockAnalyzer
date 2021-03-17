@@ -1,7 +1,7 @@
 Package: stockAnalyzer
 Type: Package
 Title: Provide Basic Time Series Modelling Functionalities to Analyze Historical Stock Prices
-Version: 0.1.0
+Version: 1.0.0
 Author: Kangyu (Mark) Wang, Sicheng (Marc) Sun, Tingyu Zhang, William Xu
 Maintainer: Mark Wang <changguang@outlook.com>
 Description: This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. 
