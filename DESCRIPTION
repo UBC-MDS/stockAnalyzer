@@ -1,9 +1,9 @@
 Package: stockAnalyzer
 Type: Package
-Title: Provide basic time series modelling functionalities to analyze historical stock prices
+Title: Provide Basic Time Series Modelling Functionalities to Analyze Historical Stock Prices
 Version: 0.1.0
 Author: Kangyu (Mark) Wang, Sicheng (Marc) Sun, Tingyu Zhang, William Xu
-Maintainer: The package maintainers <changguang@outlook.com>
+Maintainer: Mark Wang <changguang@outlook.com>
 Description: This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. 
     Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. 
     Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. 
@@ -13,6 +13,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr
 Imports:
 	quantmod (>= 0.4.18),
 	xts (>= 0.12.1),
@@ -23,5 +24,6 @@ Imports:
 	tibble (>= 3.0.3),
 	utils
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    knitr (>= 1.30)
 Config/testthat/edition: 3

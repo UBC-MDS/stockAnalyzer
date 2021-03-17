@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions)
 <!-- badges: end -->
 
 This is an R package that provides basic time series modelling
@@ -104,12 +105,12 @@ summaryStats(AAPL)
 #> # A tibble: 6 x 6
 #>   measurement          mean         min         max  volatility return
 #>   <chr>               <dbl>       <dbl>       <dbl>       <dbl>  <dbl>
-#> 1 AAPL.Open            29.0        2.84        144.        27.3 38.1  
-#> 2 AAPL.High            29.3        2.93        145.        27.7 38.2  
-#> 3 AAPL.Low             28.7        2.79        141.        26.9 39.7  
-#> 4 AAPL.Close           29.0        2.79        143.        27.3 39.4  
-#> 5 AAPL.Volume   412873192.  45448000    3372969600  381551629.  -0.929
-#> 6 AAPL.Adjusted        27.5        2.41        143.        27.5 45.9
+#> 1 AAPL.Open            29.0        2.84        144.        27.4 39.8  
+#> 2 AAPL.High            29.3        2.93        145.        27.7 40.1  
+#> 3 AAPL.Low             28.7        2.79        141.        27.0 41.6  
+#> 4 AAPL.Close           29.0        2.79        143.        27.4 41.0  
+#> 5 AAPL.Volume   412700293.  45448000    3372969600  381514970.  -0.907
+#> 6 AAPL.Adjusted        27.6        2.41        143.        27.6 47.7
 head(movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_")))
 #>            movingAverage_AAPL.Open movingAverage_AAPL.High
 #> 2007-01-03                3.081786                3.092143

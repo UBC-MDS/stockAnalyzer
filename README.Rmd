@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # stockAnalyzer
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions)
 <!-- badges: end -->
 
 This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. A convenient use case for this package is to combine it with the `quantmod` library, which can provide well-formated stock price data from Yahoo Finance dataset with customized date range setting.
