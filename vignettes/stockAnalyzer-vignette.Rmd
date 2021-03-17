@@ -1,8 +1,8 @@
 ---
-title: "package_name-vignette"
+title: "stockAnalyzer-vignette"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{package_name-vignette}
+  %\VignetteIndexEntry{stockAnalyzer-vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
