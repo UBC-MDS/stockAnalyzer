@@ -122,11 +122,8 @@ movingAverage <- function(data, window, newColname) {
 #' @export
 #'
 #' @examples
-#'
-#' quantmod::getSymbols("AAPL")
-#' exp_smoothing_AAPL <- exponentialSmoothing(
-#'     AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3
-#'     )
+#' suppressWarnings({quantmod::getSymbols("AAPL")})
+#' exp_smoothing_AAPL <- exponentialSmoothing(AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3)
 exponentialSmoothing <- function(data, newColname, alpha=0.3) {
 
   if (class(data)[1] != "xts") {
