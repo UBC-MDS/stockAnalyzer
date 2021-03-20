@@ -16,10 +16,10 @@ knitr::opts_chunk$set(
 # stockAnalyzer
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions)
+[![R-CMD-check](https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions) [![test-coverage](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml) [![codecov](https://codecov.io/gh/UBC-MDS/stockAnalyzer/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/stockAnalyzer)
 <!-- badges: end -->
 
-This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. A convenient use case for this package is to combine it with the `quantmod` library, which can provide well-formated stock price data from Yahoo Finance dataset with customized date range setting.
+This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. A convenient use case for this package is to combine it with the `quantmod` library, which can provide well-formated stock price data.
 
 ## Installation
 
@@ -36,12 +36,11 @@ The package contains the following five functions:
 
 - `summaryStats`
 
-This function calculates summary statistics including mean price, minimum price, maximum price, volatility and return rate based on daily historical stock prices.
-Users can specify lengths of time spans to calculate summary statistics on, and what kind of stock price measurement to use.
+This function calculates summary statistics including mean price, minimum price, maximum price, volatility and return rate based on daily historical stock prices. Users can specify the stock they are interested in and the exact measurement they prefer to analyze on. 
 
 - `movingAverage`
 
-This function applies the moving average model to all measurements of stock price and returns a pandas dataframe containing in-sample fitted values. Users can specify the length of moving average windows (unit: days).
+This function applies the moving average model to all measurements of stock price and returns an xts time series object containing in-sample fitted values. Users can specify the length of moving average windows (unit: days).
 
 - `exponentialSmoothing`
 
@@ -49,11 +48,11 @@ This function performs exponential smoothing on historical stock price time seri
 
 - `visMovingAverage`
 
-This function creates a line chart showing the raw historical data and fitted data using the moving average method. Users are able to specify the dataframe used, the column of choice for moving average calculation, and the length of moving average window (unit: days).
+This function creates a line chart showing the raw historical data and fitted data using the moving average method. Users are able to specify the xts object used, the column of choice for moving average calculation, and the length of moving average window (unit: days).
 
 - `visExpSmoothing`
 
-This function creates a line chart showing the raw historical data and fitted data using the exponential smoothing method. Users are able to specify the dataframe used, the column of choice for exponential smoothing calculation, and the `alpha` parameter (which defines the weighting, ranging between 0 and 1) for smoothing.
+This function creates a line chart showing the raw historical data and fitted data using the exponential smoothing method. Users are able to specify the xts object used, the column of choice for exponential smoothing calculation, and the `alpha` parameter (which defines the weighting, ranging between 0 and 1) for smoothing.
 
 ## Example
 
@@ -76,4 +75,4 @@ visExpSmoothing(AAPL, 0.02, 'AAPL.Close')
 
 There are a number of libraries in the R ecosystem that provide functionalities to analyze time series data. For example, `Tidyverse` has comprehensive functionalities for basic summary statistics. Libraries including `data.table`, `smooth` provide functions to calculate moving average. Libraries including `smooth` and `forecast` both provide functions to conduct exponential smoothing. `ggplot2` is most widely used for visualizations. 
 
-In terms of financial data analysis, there are also a wide range of packages. Widely used ones include [`RQuantLib`](https://cran.r-project.org/web/packages/RQuantLib/index.html), ['quantmod'](https://cran.r-project.org/web/packages/quantmod/index.html). 
+In terms of financial data analysis, there are also a wide range of packages. Widely used ones include [`RQuantLib`](https://cran.r-project.org/web/packages/RQuantLib/index.html), [`quantmod`](https://cran.r-project.org/web/packages/quantmod/index.html). 

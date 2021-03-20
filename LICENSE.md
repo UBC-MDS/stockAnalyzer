@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2021 Group 20 DSCI 524
+Copyright (c) 2021 Kangyu (Mark) Wang, Sicheng (Marc) Sun, Tingyu Zhang, William Xu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

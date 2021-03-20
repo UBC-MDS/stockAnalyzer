@@ -20,7 +20,7 @@ xts
 Using exponential smoothing method to profile stock data
 }
 \examples{
-
+options("getSymbols.warning4.0"=FALSE)
 quantmod::getSymbols("AAPL")
 exp_smoothing_AAPL <- exponentialSmoothing(
     AAPL,paste("expsmoothing", colnames(AAPL), sep="_") , 0.3

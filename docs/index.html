@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Provide basic time series modelling functionalities to analyze historical stock prices • stockAnalyzer</title>
+<title>Provide Basic Time Series Modelling Functionalities to Analyze Historical Stock Prices • stockAnalyzer</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Provide basic time series modelling functionalities to analyze historical stock prices">
+<script src="pkgdown.js"></script><meta property="og:title" content="Provide Basic Time Series Modelling Functionalities to Analyze Historical Stock Prices">
 <meta property="og:description" content="This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. 
     Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. 
     Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. 
@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">stockAnalyzer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -58,7 +58,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/package_name-vignette.html">package_name-vignette</a>
+      <a href="articles/stockAnalyzer-vignette.html">A Tour of Stock Analyzer Package</a>
     </li>
   </ul>
 </li>
@@ -79,8 +79,8 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#stockanalyzer" class="anchor"></a>stockAnalyzer</h1></div>
 <!-- badges: start -->
-<!-- badges: end -->
-<p>This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. A convenient use case for this package is to combine it with the <code>quantmod</code> library, which can provide well-formated stock price data from Yahoo Finance dataset with customized date range setting.</p>
+
+<p>This is an R package that provides basic time series modelling functionalities to analyze historical stock prices. Investment in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. Given time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes in-sample moving average as well as exponential smoothing fits. A convenient use case for this package is to combine it with the <code>quantmod</code> library, which can provide well-formated stock price data.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -96,11 +96,11 @@
 <ul>
 <li><code>summaryStats</code></li>
 </ul>
-<p>This function calculates summary statistics including mean price, minimum price, maximum price, volatility and return rate based on daily historical stock prices. Users can specify lengths of time spans to calculate summary statistics on, and what kind of stock price measurement to use.</p>
+<p>This function calculates summary statistics including mean price, minimum price, maximum price, volatility and return rate based on daily historical stock prices. Users can specify the stock they are interested in.</p>
 <ul>
 <li><code>movingAverage</code></li>
 </ul>
-<p>This function applies the moving average model to all measurements of stock price and returns a pandas dataframe containing in-sample fitted values. Users can specify the length of moving average windows (unit: days).</p>
+<p>This function applies the moving average model to all measurements of stock price and returns an xts time series object containing in-sample fitted values. Users can specify the length of moving average windows (unit: days).</p>
 <ul>
 <li><code>exponentialSmoothing</code></li>
 </ul>
@@ -108,11 +108,11 @@
 <ul>
 <li><code>visMovingAverage</code></li>
 </ul>
-<p>This function creates a line chart showing the raw historical data and fitted data using the moving average method. Users are able to specify the dataframe used, the column of choice for moving average calculation, and the length of moving average window (unit: days).</p>
+<p>This function creates a line chart showing the raw historical data and fitted data using the moving average method. Users are able to specify the xts object used, the column of choice for moving average calculation, and the length of moving average window (unit: days).</p>
 <ul>
 <li><code>visExpSmoothing</code></li>
 </ul>
-<p>This function creates a line chart showing the raw historical data and fitted data using the exponential smoothing method. Users are able to specify the dataframe used, the column of choice for exponential smoothing calculation, and the <code>alpha</code> parameter (which defines the weighting, ranging between 0 and 1) for smoothing.</p>
+<p>This function creates a line chart showing the raw historical data and fitted data using the exponential smoothing method. Users are able to specify the xts object used, the column of choice for exponential smoothing calculation, and the <code>alpha</code> parameter (which defines the weighting, ranging between 0 and 1) for smoothing.</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -148,12 +148,12 @@
 <span class="co">#&gt; # A tibble: 6 x 6</span>
 <span class="co">#&gt;   measurement          mean         min         max  volatility return</span>
 <span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 AAPL.Open            29.0        2.84        144.        27.3 38.1  </span>
-<span class="co">#&gt; 2 AAPL.High            29.3        2.93        145.        27.7 38.2  </span>
-<span class="co">#&gt; 3 AAPL.Low             28.7        2.79        141.        26.9 39.7  </span>
-<span class="co">#&gt; 4 AAPL.Close           29.0        2.79        143.        27.3 39.4  </span>
-<span class="co">#&gt; 5 AAPL.Volume   412873192.  45448000    3372969600  381551629.  -0.929</span>
-<span class="co">#&gt; 6 AAPL.Adjusted        27.5        2.41        143.        27.5 45.9</span>
+<span class="co">#&gt; 1 AAPL.Open            29.1        2.84        144.        27.5 38.9  </span>
+<span class="co">#&gt; 2 AAPL.High            29.4        2.93        145.        27.8 38.8  </span>
+<span class="co">#&gt; 3 AAPL.Low             28.8        2.79        141.        27.1 40.1  </span>
+<span class="co">#&gt; 4 AAPL.Close           29.1        2.79        143.        27.5 39.3  </span>
+<span class="co">#&gt; 5 AAPL.Volume   412534449.  45448000    3372969600  381472747.  -0.902</span>
+<span class="co">#&gt; 6 AAPL.Adjusted        27.6        2.41        143.        27.7 45.8</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="reference/movingAverage.html">movingAverage</a></span><span class="op">(</span><span class="va">AAPL</span>, <span class="fl">300</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"movingAverage"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">AAPL</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">"_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;            movingAverage_AAPL.Open movingAverage_AAPL.High</span>
 <span class="co">#&gt; 2007-01-03                3.081786                3.092143</span>
@@ -208,7 +208,7 @@
 <h2 class="hasAnchor">
 <a href="#r-ecosystem" class="anchor"></a>R Ecosystem</h2>
 <p>There are a number of libraries in the R ecosystem that provide functionalities to analyze time series data. For example, <code>Tidyverse</code> has comprehensive functionalities for basic summary statistics. Libraries including <code>data.table</code>, <code>smooth</code> provide functions to calculate moving average. Libraries including <code>smooth</code> and <code>forecast</code> both provide functions to conduct exponential smoothing. <code>ggplot2</code> is most widely used for visualizations.</p>
-<p>In terms of financial data analysis, there are also a wide range of packages. Widely used ones include <a href="https://cran.r-project.org/web/packages/RQuantLib/index.html"><code>RQuantLib</code></a>, <a href="https://cran.r-project.org/web/packages/quantmod/index.html">‘quantmod’</a>.</p>
+<p>In terms of financial data analysis, there are also a wide range of packages. Widely used ones include <a href="https://cran.r-project.org/web/packages/RQuantLib/index.html"><code>RQuantLib</code></a>, <a href="https://cran.r-project.org/web/packages/quantmod/index.html"><code>quantmod</code></a>.</p>
 </div>
 </div>
   </div>
@@ -231,16 +231,24 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>The package maintainers <br><small class="roles"> Maintainer </small>  </li>
+<li>Mark Wang <br><small class="roles"> Maintainer </small>  </li>
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/UBC-MDS/stockAnalyzer/actions"><img src="https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml"><img src="https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml/badge.svg" alt="test-coverage"></a></li>
+<li><a href="https://codecov.io/gh/UBC-MDS/stockAnalyzer"><img src="https://codecov.io/gh/UBC-MDS/stockAnalyzer/branch/main/graph/badge.svg" alt="codecov"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by The package maintainers.</p>
+  <p>Developed by Mark Wang.</p>
 </div>
 
 <div class="pkgdown">

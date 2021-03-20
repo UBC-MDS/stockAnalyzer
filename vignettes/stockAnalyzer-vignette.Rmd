@@ -1,8 +1,8 @@
 ---
-title: "stockAnalyzer-vignette"
+title: "A Tour of Stock Analyzer Package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{stockAnalyzer-vignette}
+  %\VignetteIndexEntry{A Tour of Stock Analyzer Package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,8 +12,79 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+options("getSymbols.warning4.0"=FALSE, 
+        warn=-1,
+        rmarkdown.html_vignette.check_title = FALSE)
 ```
+
+Welcome! 🎉  Bienvenue! 🎈 Välkommen 👋 Here is a tour of the Stock Analyzer package!
 
 ```{r setup}
 library(stockAnalyzer)
 ```
+
+## What does the package do?
+Investments in the stock market requires not only knowledge about the listed companies, but also basic summary statistics and modellings of individual stock prices. This R package provides basic time series modelling functionalities to analyze historical stock prices. Given the time-series stock price data, this package provides key summary statistics, applies moving average and exponential smoothing models to the data, and visualizes simple moving average and exponential smoothing fits. 
+
+
+## Data: Stock price dataset loaded from `quantmod` library
+This package is able to work with `quantmod` library, which can load well-formated stock price data.
+```{r}
+library(quantmod)
+```
+
+## Example of using functions, step by step guide
+
+### `summaryStats` application
+Let's say that you are interested in a specific public company but have no idea about its performance and statistics. The `summaryStats` is here is solve the problem. It calculates summary statistics including average price, minimum price, maximum price, volatility, stock return percentage based on the daily historical stock prices. You have the flexibility to specify the stock of interest, and the exact measurement in the data that you prefer to analyze on.
+
+For example, you are interested in Roku Inc. (an American public company list on Nasdaq engaging the provision of streaming platform for TVs). The ticker symbol to represent Roku Inc. is "ROKU", and you can specify it in `getSymbols` and then simply put ROKU (xts time seris object) in the `summaryStats` function. It will provide you with an xts time series object of summary statistics.
+
+If you are only interested in ROKU's closing price summary statistics, you are able to add `measurements = "ROKU.Close"` in the `summaryStats()` function as an optional argument.
+```{r}
+getSymbols("ROKU")
+summaryStats(ROKU)
+summaryStats(ROKU, measurements = "ROKU.Close")
+```
+
+
+### `movingAverage` application
+Now you are intrigued about these numbers and want a deeper dive in understanding the stock performance. `movingAverage` function is here to help, it applies the simple moving average to the stock price and returns an xts time series object with fitted values. You are able to specify the length of moving average window (unit: days). 
+
+You may want to take a look at 50-day simple moving average of ROKU. You can follow the following format to set ROKU as the first argument, 50 as the second argument, and put ROKU in `colnames()`. 
+```{r}
+tail(movingAverage(ROKU, 50, paste("movingAverage", colnames(ROKU), sep="_")))
+```
+
+### `exponentialSmoothing` application
+Simple moving average is too simple? No problem, `exponentialSmoothing` function is here to provide some more insights on stock prices. This function performs exponential smoothing on historical stock price time series data. You are able to specify the `alpha` parameter between 0 and 1 for smoothing strength. The closer alpha is to 1, the less prior data points would be taken into account for the smoothing. In practice, alpha is usually set to a value ranging from 0.1 to 0.3.
+
+For the ROKU stock example, you can set ROKU as first argument, put ROKU in `colnames()`, 0.2 as the last argument. 0.2 here is the alpha.
+```{r}
+tail(exponentialSmoothing(ROKU, paste("expsmoothing", colnames(ROKU), sep="_"), 0.2))
+```
+
+### `visMovingAverage` application
+If you want to visualize the stock price trend, there are two visualization tools in the Stock Analyzer package. `visMovingAverge` function would create a line plot showing the comparison of raw historical prices and simple moving average. You are able to customize the stock in the first argument, moving average window (unit: days) in the second argument, and the name of the column to be used in moving average calculation in the third argument.
+
+Below is an example of ROKU's closing price plot with 50-day simple moving average. The dark blue line is the line of historical prices and the Tiffany blue (lighter blue) line is the simple moving average.
+```{r fig.height = 4, fig.width = 7}
+visMovingAverage(ROKU, 50, 'ROKU.Close')
+```
+
+
+### `visExpSmoothing` application
+How does exponential smoothing fit comparing to moving average approach? `visExpSmoothing` function creates a similar line plot with comparison of historical stock prices and exponentially smoothed stock prices. You are able to customize the stock in the first argument, alpha parameter in the second argument, and the name of the column to be used in exponential smoothing calculation in the third argument.
+
+Below is an example of ROKU's closing price plot with exponential smoothing with alpha 0.2. The dark blue line is the line of historical prices and the Tiffany blue (lighter blue) line is the exponentially smoothed line. Pretty cool, exponential smoothing has a better fit than simple moving average approach in general.
+```{r fig.height = 4, fig.width = 7}
+visExpSmoothing(ROKU, 0.2, 'ROKU.Close')
+```
+
+
+
+
+
+
+
+

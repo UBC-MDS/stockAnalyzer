@@ -2,6 +2,6 @@ pandoc: 2.9.2.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  package_name-vignette: package_name-vignette.html
-last_built: 2021-03-17T22:27Z
+  stockAnalyzer-vignette: stockAnalyzer-vignette.html
+last_built: 2021-03-19T23:52Z
 
