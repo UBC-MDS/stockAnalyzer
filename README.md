@@ -5,7 +5,9 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions) [![test-coverage](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml) [![codecov](https://codecov.io/gh/UBC-MDS/stockAnalyzer/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/stockAnalyzer)
+[![R-CMD-check](https://github.com/UBC-MDS/stockAnalyzer/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions)
+[![test-coverage](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/stockAnalyzer/actions/workflows/test-coverage.yaml)
+[![codecov](https://codecov.io/gh/UBC-MDS/stockAnalyzer/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/stockAnalyzer)
 <!-- badges: end -->
 
 This is an R package that provides basic time series modelling
@@ -17,7 +19,7 @@ statistics, applies moving average and exponential smoothing models to
 the data, and visualizes in-sample moving average as well as exponential
 smoothing fits. A convenient use case for this package is to combine it
 with the `quantmod` library, which can provide well-formated stock price
-data from Yahoo Finance dataset with customized date range setting.
+data.
 
 ## Installation
 
@@ -37,16 +39,15 @@ The package contains the following five functions:
 
 This function calculates summary statistics including mean price,
 minimum price, maximum price, volatility and return rate based on daily
-historical stock prices. Users can specify lengths of time spans to
-calculate summary statistics on, and what kind of stock price
-measurement to use.
+historical stock prices. Users can specify the stock they are interested
+in and the exact measurement they prefer to analyze on.
 
   - `movingAverage`
 
 This function applies the moving average model to all measurements of
-stock price and returns a pandas dataframe containing in-sample fitted
-values. Users can specify the length of moving average windows (unit:
-days).
+stock price and returns an xts time series object containing in-sample
+fitted values. Users can specify the length of moving average windows
+(unit: days).
 
   - `exponentialSmoothing`
 
@@ -58,14 +59,14 @@ the weighting, ranging between 0 and 1) for smoothing.
 
 This function creates a line chart showing the raw historical data and
 fitted data using the moving average method. Users are able to specify
-the dataframe used, the column of choice for moving average calculation,
-and the length of moving average window (unit: days).
+the xts object used, the column of choice for moving average
+calculation, and the length of moving average window (unit: days).
 
   - `visExpSmoothing`
 
 This function creates a line chart showing the raw historical data and
 fitted data using the exponential smoothing method. Users are able to
-specify the dataframe used, the column of choice for exponential
+specify the xts object used, the column of choice for exponential
 smoothing calculation, and the `alpha` parameter (which defines the
 weighting, ranging between 0 and 1) for smoothing.
 
@@ -105,12 +106,12 @@ summaryStats(AAPL)
 #> # A tibble: 6 x 6
 #>   measurement          mean         min         max  volatility return
 #>   <chr>               <dbl>       <dbl>       <dbl>       <dbl>  <dbl>
-#> 1 AAPL.Open            29.0        2.84        144.        27.4 39.8  
-#> 2 AAPL.High            29.3        2.93        145.        27.7 40.1  
-#> 3 AAPL.Low             28.7        2.79        141.        27.0 41.6  
-#> 4 AAPL.Close           29.0        2.79        143.        27.4 41.0  
-#> 5 AAPL.Volume   412700293.  45448000    3372969600  381514970.  -0.907
-#> 6 AAPL.Adjusted        27.6        2.41        143.        27.6 47.7
+#> 1 AAPL.Open            29.1        2.84        144.        27.5 38.9  
+#> 2 AAPL.High            29.4        2.93        145.        27.8 38.8  
+#> 3 AAPL.Low             28.8        2.79        141.        27.1 40.1  
+#> 4 AAPL.Close           29.1        2.79        143.        27.5 39.3  
+#> 5 AAPL.Volume   412534449.  45448000    3372969600  381472747.  -0.902
+#> 6 AAPL.Adjusted        27.6        2.41        143.        27.7 45.8
 head(movingAverage(AAPL, 300, paste("movingAverage", colnames(AAPL), sep="_")))
 #>            movingAverage_AAPL.Open movingAverage_AAPL.High
 #> 2007-01-03                3.081786                3.092143
@@ -179,4 +180,4 @@ most widely used for visualizations.
 In terms of financial data analysis, there are also a wide range of
 packages. Widely used ones include
 [`RQuantLib`](https://cran.r-project.org/web/packages/RQuantLib/index.html),
-[‘quantmod’](https://cran.r-project.org/web/packages/quantmod/index.html).
+[`quantmod`](https://cran.r-project.org/web/packages/quantmod/index.html).
