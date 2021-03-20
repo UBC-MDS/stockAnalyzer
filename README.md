@@ -70,6 +70,16 @@ specify the xts object used, the column of choice for exponential
 smoothing calculation, and the `alpha` parameter (which defines the
 weighting, ranging between 0 and 1) for smoothing.
 
+You can also find function descriptions and their use cases in [package
+vignettes](https://ubc-mds.github.io/stockAnalyzer/reference/index.html).
+
+## Documentation
+
+  - [Vignettes Home
+    Page](https://ubc-mds.github.io/stockAnalyzer/index.html)
+  - [A Tour of Stock Analyzer
+    Package](https://ubc-mds.github.io/stockAnalyzer/articles/stockAnalyzer-vignette.html)
+
 ## Example
 
 This is a basic example which shows how to generate summary statistics,

@@ -54,6 +54,14 @@ This function creates a line chart showing the raw historical data and fitted da
 
 This function creates a line chart showing the raw historical data and fitted data using the exponential smoothing method. Users are able to specify the xts object used, the column of choice for exponential smoothing calculation, and the `alpha` parameter (which defines the weighting, ranging between 0 and 1) for smoothing.
 
+You can also find function descriptions and their use cases in [package
+vignettes](https://ubc-mds.github.io/stockAnalyzer/reference/index.html).
+
+## Documentation
+
+  - [Vignettes Home Page](https://ubc-mds.github.io/stockAnalyzer/index.html)
+  - [A Tour of Stock Analyzer Package](https://ubc-mds.github.io/stockAnalyzer/articles/stockAnalyzer-vignette.html)
+
 ## Example
 
 This is a basic example which shows how to generate summary statistics, conduct moving average modelling, exponential smoothing modeling, and produce visualizations:
